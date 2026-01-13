@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도: 역사와 주권의 기록 - 인터랙티브 리포트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Heritage Navy & Gold -->
+    <!-- 
+         Colors:
+         - Background: #F9FAFB (Cool Gray 50)
+         - Primary: #1e3a8a (Blue 900)
+         - Secondary: #b45309 (Amber 700)
+         - Text: #1f2937 (Gray 800)
+    -->
+
+    <!-- Application Structure Plan: 
+         Digital Sovereignty Dashboard layout.
+         - Navigation: Sticky with smooth scroll and a prominent 'Home' link on the right.
+         - Content flow: Visual/Geographic -> Historical -> Modern status -> Conclusion.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Distance Comparison: Chart.js Bar.
+         - Resource Grid: HTML/Tailwind cards with JS detail toggle.
+         - Historical Archives: Timeline-based detail viewer.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F9FAFB;
+            color: #1f2937;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+        
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+
+        .active-tab {
+            border-bottom: 3px solid #1e3a8a;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-900 serif">독도 리포트 2026</span>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <div class="flex space-x-6 items-center border-r border-gray-200 pr-6">
+                        <button onclick="scrollToSection('hero')" class="text-gray-600 hover:text-blue-900 font-medium transition text-sm">소개</button>
+                        <button onclick="scrollToSection('geography')" class="text-gray-600 hover:text-blue-900 font-medium transition text-sm">지리적 가치</button>
+                        <button onclick="scrollToSection('history')" class="text-gray-600 hover:text-blue-900 font-medium transition text-sm">역사적 증거</button>
+                        <button onclick="scrollToSection('sovereignty')" class="text-gray-600 hover:text-blue-900 font-medium transition text-sm">현대 주권</button>
+                    </div>
+                    <!-- Home Button (Top Right) -->
+                    <a href="index.html" class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-md text-sm font-bold transition flex items-center space-x-2">
+                        <span>홈으로</span>
+                        <span class="text-xs">🏠</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileNav()" class="text-gray-600 hover:text-blue-900 focus:outline-none p-2">
+                        <span class="text-2xl">☰</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Nav Panel -->
+        <div id="mobile-nav" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block w-full text-left px-3 py-2 rounded-md text-base font-bold text-blue-900 bg-gray-50 mb-2">🏠 홈으로 돌아가기</a>
+                <button onclick="scrollToSection('hero'); toggleMobileNav()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">소개</button>
+                <button onclick="scrollToSection('geography'); toggleMobileNav()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">지리적 가치</button>
+                <button onclick="scrollToSection('history'); toggleMobileNav()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">역사적 증거</button>
+                <button onclick="scrollToSection('sovereignty'); toggleMobileNav()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">현대 주권</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="bg-blue-900 text-white pt-20 pb-24 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-800 border border-blue-700 text-sm font-medium mb-6 text-blue-200">2026년 1월 13일 보고서</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">독도: 역사와 주권의 기록</h1>
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
+                대한민국 동단, 단순한 영토 이상의 상징.<br>
+                역사적 사료와 지리적 실효 지배를 통해 증명된 우리의 땅.
+            </p>
+            <div class="mt-10">
+                <button onclick="scrollToSection('geography')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition transform hover:-translate-y-1">
+                    리포트 살펴보기
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section: Geography -->
+    <section id="geography" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">지리적 특성 및 미래 가치</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    독도는 울릉도에서 동남쪽으로 87.4km 떨어져 있어 맑은 날 육안으로 관측 가능합니다. 이는 일본 오키섬(157.5km)보다 지리적으로 훨씬 가깝습니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-6">최단 거리 비교 분석</h3>
+                    <div class="chart-container">
+                        <canvas id="distanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">주요 가치</h3>
+                    <div onclick="toggleInfo('res1')" class="cursor-pointer bg-blue-50 p-4 rounded-lg border-l-4 border-blue-800">
+                        <h4 class="font-bold text-blue-900">🌊 풍부한 해양 자원</h4>
+                        <p id="res1" class="hidden text-sm text-gray-700 mt-2">조경 수역에 위치하여 회유성 어족이 풍부한 황금어장을 형성합니다.</p>
+                    </div>
+                    <div onclick="toggleInfo('res2')" class="cursor-pointer bg-amber-50 p-4 rounded-lg border-l-4 border-amber-800">
+                        <h4 class="font-bold text-amber-900">⚡ 미래 에너지 보고</h4>
+                        <p id="res2" class="hidden text-sm text-gray-700 mt-2">차세대 에너지원인 가스 하이드레이트가 매장되어 경제적 잠재력이 큽니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: History -->
+    <section id="history" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">역사적 주권의 근거</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto mb-6"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/3 space-y-2">
+                    <button onclick="updateHistory(0)" class="hist-btn w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-blue-500 transition shadow-sm font-bold">1454 세종실록지리지</button>
+                    <button onclick="updateHistory(1)" class="hist-btn w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-blue-500 transition shadow-sm font-bold">1667 은주시청합기</button>
+                    <button onclick="updateHistory(2)" class="hist-btn w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-blue-500 transition shadow-sm font-bold">1877 태정관 지령</button>
+                </div>
+                <div id="history-content" class="lg:w-2/3 bg-white p-8 rounded-2xl shadow-md border border-gray-100 min-h-[300px] flex flex-col justify-center">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-500 py-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">본 보고서는 독도의 지리적, 역사적, 법적 영유권을 확고히 하기 위해 제작되었습니다.</p>
+            <p class="mt-4 text-xs opacity-50">&copy; 2026 Dokdo Insight Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const historyData = [
+            {
+                title: "세종실록지리지",
+                year: "1454년 (조선)",
+                text: "'우산(독도)과 무릉(울릉도) 두 섬이 서로 멀지 않아 날씨가 맑으면 바라볼 수 있다'고 기록되어 독도가 우리 주권 하에 있었음을 증명합니다."
+            },
+            {
+                title: "은주시청합기",
+                year: "1667년 (일본)",
+                text: "일본 문헌에서도 일본의 북서쪽 경계를 오키섬으로 한정하여, 울릉도와 독도가 조선의 영토임을 역설적으로 보여주는 사례입니다."
+            },
+            {
+                title: "태정관 지령",
+                year: "1877년 (일본)",
+                text: "일본 메이지 시대 최고 행정기관인 태정관이 '울릉도와 독도는 일본과 관계가 없다'고 공식적으로 인정한 문서입니다."
+            }
+        ];
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
+        }
+
+        function toggleMobileNav() {
+            document.getElementById('mobile-nav').classList.toggle('hidden');
+        }
+
+        function toggleInfo(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+
+        function updateHistory(idx) {
+            const data = historyData[idx];
+            const content = document.getElementById('history-content');
+            content.innerHTML = `
+                <div class="animate-in fade-in duration-500">
+                    <span class="text-blue-900 font-bold text-sm block mb-2">${data.year}</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">${data.title}</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">${data.text}</p>
+                </div>
+            `;
+        }
+
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('hidden');
+        }
+
+        window.onload = function() {
+            updateHistory(0);
+            
+            const ctx = document.getElementById('distanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['울릉도-독도', '오키섬-독도'],
+                    datasets: [{
+                        label: '거리 (km)',
+                        data: [87.4, 157.5],
+                        backgroundColor: ['#1e3a8a', '#9ca3af'],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
