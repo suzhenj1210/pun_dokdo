@@ -3,163 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>독도: 우리 땅의 기록과 정책</title>
+    <title>독도 용어사전 - DOKDO PORTAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
         .myeongjo { font-family: 'Nanum Myeongjo', serif; }
-        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-        .nav-link { transition: all 0.2s ease; }
-        .nav-link:hover { color: #2563eb; }
+        .tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 700; }
     </style>
 </head>
-<body class="pb-20" id="top">
+<body class="pb-20">
 
     <!-- Sticky Navigation -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <a href="index.html" class="flex items-center space-x-2 text-blue-600 font-bold" title="홈으로">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                    </svg>
-                    <span>DOKDO PORTAL</span>
-                </a>
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-end">
+            <!-- 좌측 독도 포털 로고 제거됨 -->
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="01.html" class="hover:text-blue-600 transition">독도 정책</a>
+                <a href="02.html" class="hover:text-blue-600 transition">역사 연표</a>
+                <a href="03.html" class="text-blue-600 font-bold">용어사전</a>
+                <a href="04.html" class="hover:text-blue-600 transition">의견수렴</a>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-                <a href="01.html" class="nav-link">독도 정책</a>
-                <a href="02.html" class="nav-link">역사 연표</a>
-                <a href="03.html" class="nav-link">용어사전</a>
-                <a href="04.html" class="nav-link text-blue-600 font-bold">의견수렴</a>
+            
+            <!-- 모바일용 홈 링크 (필요시) -->
+            <div class="md:hidden">
+                <a href="index.html" class="text-xs text-slate-400">홈으로</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-gradient text-white py-24 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <span class="inline-block px-4 py-1 mb-6 rounded-full bg-white/20 text-white text-xs font-bold tracking-widest backdrop-blur-sm">
-                대한민국 동쪽 끝, 우리 땅 독도
-            </span>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 myeongjo leading-tight">
-                기록이 증명하고<br>우리가 수호하는 섬
-            </h1>
-            <p class="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed opacity-90">
-                독도의 역사적 연표부터 주요 정책, 필수 용어, 그리고 시민들의 목소리까지<br>
-                통합 포털에서 확인하실 수 있습니다.
-            </p>
+    <!-- Page Header -->
+    <header class="bg-emerald-600 text-white py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold myeongjo mb-4">독도 용어사전</h1>
+            <p class="text-emerald-50 text-lg opacity-90">독도를 이해하는 첫걸음, 정확한 용어와 명칭의 정의입니다.</p>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 -mt-12">
+    <main class="max-w-6xl mx-auto px-6 py-12">
         
-        <!-- Navigation Cards (Main Menu) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-            <!-- 01. 정책 -->
-            <a href="01.html" class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:translate-y-[-8px] transition-all group">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">독도 정책</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">영토 주권 수호 정책과 관리 현황을 확인하세요.</p>
-                <div class="mt-4 text-blue-600 text-xs font-bold flex items-center">
-                    바로가기 <span class="ml-1">→</span>
-                </div>
-            </a>
-
-            <!-- 02. 연표 -->
-            <a href="02.html" class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:translate-y-[-8px] transition-all group">
-                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">역사 연표</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">서기 512년부터 이어지는 독도의 역사를 봅니다.</p>
-                <div class="mt-4 text-rose-600 text-xs font-bold flex items-center">
-                    바로가기 <span class="ml-1">→</span>
-                </div>
-            </a>
-
-            <!-- 03. 용어 -->
-            <a href="03.html" class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:translate-y-[-8px] transition-all group">
-                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">용어사전</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">명칭, 문헌, 인물에 대한 정확한 정의를 제공합니다.</p>
-                <div class="mt-4 text-emerald-600 text-xs font-bold flex items-center">
-                    바로가기 <span class="ml-1">→</span>
-                </div>
-            </a>
-
-            <!-- 04. 의견수렴 -->
-            <a href="04.html" class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:translate-y-[-8px] transition-all group">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">의견수렴</h3>
-                <p class="text-slate-500 text-sm leading-relaxed">독도 수호를 위한 여러분의 소중한 의견을 듣습니다.</p>
-                <div class="mt-4 text-amber-600 text-xs font-bold flex items-center">
-                    바로가기 <span class="ml-1">→</span>
-                </div>
-            </a>
+        <!-- Category Tabs -->
+        <div class="flex overflow-x-auto space-x-8 border-b border-slate-200 mb-10 pb-1">
+            <button class="tab-active px-4 py-2 text-sm whitespace-nowrap">전체</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">명칭 및 지명</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">지리 및 자연</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">문헌 및 사료</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">인물 및 단체</button>
         </div>
 
-        <!-- Section Preview: Timeline Summary -->
-        <section class="mb-24">
-            <div class="bg-slate-900 text-white rounded-[2.5rem] p-10 md:p-16 overflow-hidden relative">
-                <div class="relative z-10">
-                    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                        <div>
-                            <h2 class="text-3xl font-bold myeongjo mb-4">역사의 흐름</h2>
-                            <p class="text-slate-400">서기 512년부터 시작된 우리 땅의 기록입니다.</p>
-                        </div>
-                        <a href="02.html" class="mt-6 md:mt-0 px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-bold transition inline-block">전체 연표 보러가기</a>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <span class="text-blue-500 font-bold text-lg">512년</span>
-                            <h4 class="font-bold mt-2">우산국 복속</h4>
-                            <p class="text-xs text-slate-400 mt-2">신라 이사부 장군에 의해 한국 역사에 최초 편입</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <span class="text-blue-500 font-bold text-lg">1900년</span>
-                            <h4 class="font-bold mt-2">대한제국 칙령 제41호</h4>
-                            <p class="text-xs text-slate-400 mt-2">근대적 주권 선포 및 울릉군 관할 명시</p>
-                        </div>
-                        <div class="p-6 rounded-2xl bg-slate-800/50 border border-slate-700">
-                            <span class="text-blue-500 font-bold text-lg">1952년</span>
-                            <h4 class="font-bold mt-2">평화선 선언</h4>
-                            <p class="text-xs text-slate-400 mt-2">해양 주권 범위 확정 및 독도 수호 의지 천명</p>
-                        </div>
-                    </div>
+        <div class="grid grid-cols-1 gap-12">
+            
+            <!-- Category: 명칭 및 지명 -->
+            <section>
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full mr-3"></span>명칭 및 지명
+                </h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700 w-1/3">용어</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700">정의 및 설명</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">우산도 (于山島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">옛 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    독도의 가장 오래된 이름 중 하나로, 삼국시대 우산국에서 유래했습니다. 조선시대 『세종실록지리지』, 『신증동국여지승람』 등 수많은 관찬 문헌에 기록되어 있습니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">석도 (Stone Island, 石島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">대한제국 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    1900년 대한제국 칙령 제41호에 명시된 명칭입니다. 전라도 방언으로 '돌섬'을 뜻하는 '독섬'을 한자로 표기한 것으로 해석됩니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">삼봉도 (三峰島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">조선 성종기 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    조선 성종 때 독도를 멀리서 보았을 때 세 개의 봉우리로 보인다는 점에서 유래한 명칭입니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Decorative background element -->
-                <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
-            </div>
-        </section>
+            </section>
 
+            <!-- Category: 문헌 및 사료 -->
+            <section>
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <span class="w-1.5 h-6 bg-blue-500 rounded-full mr-3"></span>역사적 문헌 및 사료
+                </h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700 w-1/3">사료명</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700">내용 및 가치</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">은주시청합기 (1667)</div>
+                                    <div class="text-xs text-slate-400 mt-1">일본 사료</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    일본의 고문헌으로, 일본의 서북쪽 경계를 '오키섬'으로 한정하여 울릉도와 독도가 조선 영토임을 방증하는 자료로 활용됩니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">칙령 제41호 (1900)</div>
+                                    <div class="text-xs text-slate-400 mt-1">대한제국 관보</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    고종 황제가 울릉도를 울군으로 승격시키고 독도(석도)를 관할 구역에 포함시킨 법령으로, 독도 영유권의 가장 강력한 국제법적 근거 중 하나입니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">태정관 지령 (1877)</div>
+                                    <div class="text-xs text-slate-400 mt-1">일본 공문서</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    당시 일본 최고 권력기관인 태정관이 내무성에 "죽도(울릉도) 외 일도(독도)는 일본과 관계없음을 명심하라"고 내린 공식 지시입니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="mt-16 text-center">
+            <a href="index.html" class="inline-flex items-center px-8 py-3 rounded-full bg-slate-800 text-white font-bold hover:bg-slate-700 transition shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                메인 페이지로 돌아가기
+            </a>
+        </div>
     </main>
 
-    <footer class="mt-24 py-12 text-center border-t border-slate-200">
+    <footer class="mt-24 py-12 text-center border-t border-slate-200 bg-white">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-slate-800 font-bold myeongjo mb-4">DOKDO PORTAL</div>
-            <p class="text-slate-400 text-xs mb-8">독도에 관한 모든 기록과 정책을 투명하게 공개합니다.</p>
-            <div class="flex justify-center space-x-6 text-slate-500 text-sm">
-                <a href="01.html" class="hover:text-blue-600 transition">정책</a>
-                <a href="02.html" class="hover:text-blue-600 transition">연표</a>
-                <a href="03.html" class="hover:text-blue-600 transition">용어</a>
-                <a href="04.html" class="hover:text-blue-600 transition">의견</a>
-            </div>
+            <div class="text-slate-800 font-bold myeongjo mb-4 text-lg">독도 포털</div>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-lg mx-auto">
+                본 서비스는 독도의 영토 주권 수호와 역사적 가치를 알리기 위해 제작되었습니다.<br>
+                독도의 명칭과 사료에 대한 정보는 국가기록원 및 외교부 독도 홈페이지를 참고하였습니다.
+            </p>
         </div>
     </footer>
 
