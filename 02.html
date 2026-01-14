@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도 연대기: 천년의 기록 (Light Edition)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; overflow-x: hidden; }
+        .myeongjo { font-family: 'Nanum Myeongjo', serif; }
+        
+        /* Timeline specific styles */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #cbd5e1 0%, #3b82f6 50%, #94a3b8 100%);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            height: 320px;
+        }
+
+        .era-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .era-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container::before { left: 24px; }
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="flex items-center space-x-2 text-slate-700 hover:text-blue-600 transition group" title="홈으로 이동">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span class="font-bold text-sm hidden sm:inline">HOME</span>
+                </a>
+                <div class="h-4 w-[1px] bg-slate-200 hidden sm:block"></div>
+                <span class="font-bold text-blue-700 text-lg myeongjo">독도 연대기</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-semibold">
+                <a href="#dashboard" class="text-slate-600 hover:text-blue-600 transition">통계분석</a>
+                <a href="#timeline-section" class="text-slate-600 hover:text-blue-600 transition">연도별 탐색</a>
+                <a href="#summary" class="text-slate-600 hover:text-blue-600 transition">역사적 의미</a>
+            </div>
+            <div class="flex items-center bg-blue-50 rounded-full px-4 py-1.5 border border-blue-100">
+                <span class="text-[10px] font-black text-blue-600 mr-2 uppercase tracking-tighter">Status</span>
+                <span id="current-view-era" class="text-[10px] text-blue-500 font-mono uppercase tracking-widest font-bold">All Eras</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="relative bg-white border-b border-slate-100 py-20">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <div class="inline-block px-4 py-1 mb-6 rounded-full bg-blue-50 text-blue-600 text-xs font-bold tracking-widest">
+                KOREAN TERRITORY
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 myeongjo leading-tight">
+                독도, 천년의 기록을<br><span class="text-blue-600">열어보다</span>
+            </h1>
+            <p class="text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                이사부 장군의 우산국 복속부터 오늘날까지,<br> 
+                우리 땅 독도의 역사를 투명하고 명확하게 확인해 보세요.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12 space-y-16">
+
+        <!-- Section 1: Dashboard -->
+        <section id="dashboard" class="scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 myeongjo mb-4">역사의 지표 분석</h2>
+                        <p class="text-slate-500 mb-8">
+                            1,500년간 이어진 실효적 지배의 증거들을 데이터로 시각화했습니다.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div class="text-[10px] text-blue-500 font-bold mb-1 uppercase">Ancient</div>
+                            <div class="text-3xl font-black text-slate-800">7건</div>
+                        </div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div class="text-[10px] text-rose-500 font-bold mb-1 uppercase">Modern</div>
+                            <div class="text-3xl font-black text-slate-800">3건</div>
+                        </div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div class="text-[10px] text-emerald-500 font-bold mb-1 uppercase">Current</div>
+                            <div class="text-3xl font-black text-slate-800">6건</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col items-center">
+                    <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">증거 분포</h3>
+                    <div class="chart-container">
+                        <canvas id="mainAnalysisChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Timeline -->
+        <section id="timeline-section" class="scroll-mt-24">
+            <div class="bg-white rounded-[2.5rem] p-6 md:p-10 border border-slate-200 shadow-sm relative">
+                
+                <!-- Controls -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-6 sticky top-20 z-40 bg-white/95 py-4 backdrop-blur-sm border-b border-slate-50">
+                    <div class="flex flex-wrap justify-center gap-2" id="era-filters">
+                        <button onclick="setEra('all', this)" class="era-btn active px-5 py-2 rounded-full text-xs font-bold bg-blue-600 text-white transition-all">전체</button>
+                        <button onclick="setEra('ancient', this)" class="era-btn px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">고대/고려</button>
+                        <button onclick="setEra('joseon', this)" class="era-btn px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">조선</button>
+                        <button onclick="setEra('modern', this)" class="era-btn px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">근대</button>
+                        <button onclick="setEra('contemporary', this)" class="era-btn px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">현대</button>
+                    </div>
+                    
+                    <div class="relative w-full md:w-64">
+                        <input type="text" id="masterSearch" placeholder="검색..." 
+                               class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2 px-10 text-sm outline-none focus:ring-2 focus:ring-blue-400 transition-all">
+                        <span class="absolute left-3 top-2.5 opacity-40">🔍</span>
+                    </div>
+                </div>
+
+                <!-- Timeline Render Target -->
+                <div class="relative timeline-container min-h-[400px]" id="timeline-render-root">
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-20">
+                    <p class="text-slate-400">일치하는 역사 기록이 없습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Summary -->
+        <section id="summary" class="bg-blue-600 rounded-3xl p-10 text-center text-white">
+            <h2 class="text-2xl font-bold myeongjo mb-4">역사가 증명하는 우리의 미래</h2>
+            <p class="max-w-2xl mx-auto opacity-90 text-sm leading-relaxed">
+                독도는 우리 민족의 자존심이며 수많은 기록이 뒷받침하는 정의의 산물입니다.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="py-10 text-center border-t border-slate-200">
+        <p class="text-slate-400 text-xs font-medium">© 2026 Dokdo History Archive</p>
+    </footer>
+
+    <script>
+        const dokdoEvents = [
+            { year: "512", title: "우산국 복속", desc: "신라 이사부 장군이 우산국을 복속하며 독도가 한국 역사에 최초로 편입되었습니다.", era: "ancient", cat: "영토", icon: "⚔️", meaning: "역사적 영유권의 기점" },
+            { year: "930", title: "고려 태조 귀부", desc: "우산국 사람들이 고려 태조에게 토산물을 바치며 조공 관계를 맺었습니다.", era: "ancient", cat: "외교", icon: "📦", meaning: "국가 간 지배체제 유지" },
+            { year: "1145", title: "삼국사기 편찬", desc: "우산국 복속 사실이 삼국사기에 공식 기록되었습니다.", era: "ancient", cat: "기록", icon: "📜", meaning: "공식 역사 기록 확보" },
+            { year: "1454", title: "세종실록 지리지", desc: "울릉도와 독도가 강원도 울진현에 속함을 명시했습니다.", era: "joseon", cat: "기록", icon: "📘", meaning: "행정 구역 편입 입증" },
+            { year: "1531", title: "신증동국여지승람", desc: "팔도총도에 독도가 울릉도와 별개의 섬으로 그려져 있습니다.", era: "joseon", cat: "기록", icon: "🗺️", meaning: "지리학적 인식의 확립" },
+            { year: "1693", title: "안용복 사건", desc: "일본 어민들을 막아내고 일본 막부로부터 조선 영토임을 확인받았습니다.", era: "joseon", cat: "활동", icon: "🚣", meaning: "민간 외교를 통한 주권 수호" },
+            { year: "1877", title: "태정관 지령", desc: "일본 최고 행정기구가 '울릉도와 독도는 일본과 무관함'을 공식 하달했습니다.", era: "joseon", cat: "법적", icon: "⚖️", meaning: "일본 스스로의 영유권 부인" },
+            { year: "1900", title: "대한제국 칙령 제41호", desc: "고종 황제가 독도를 울도군 관할로 명문화하여 근대 주권을 선포했습니다.", era: "modern", cat: "법적", icon: "👑", meaning: "근대 국제법상 영유권 확립" },
+            { year: "1905", title: "시마네현 고시", desc: "일본이 독도를 무단으로 자국 영토에 편입하려 시도했습니다.", era: "modern", cat: "침탈", icon: "⚠️", meaning: "제국주의적 불법 침탈 시점" },
+            { year: "1906", title: "심흥택 군수 보고", desc: "울릉군수가 '본군 소속 독도'임을 정부에 급보했습니다.", era: "modern", cat: "활동", icon: "📢", meaning: "지방 정부의 강력한 항의" },
+            { year: "1946", title: "SCAPIN 제677호", desc: "연합국 최고사령부가 독도를 일본 통치 영역에서 제외했습니다.", era: "contemporary", cat: "법적", icon: "📄", meaning: "제2차대전 후 국제적 반환" },
+            { year: "1952", title: "이승만 라인 선포", desc: "해양 주권 선언을 통해 독도를 포함한 평화선을 설정했습니다.", era: "contemporary", cat: "법적", icon: "🌊", meaning: "해양 주권의 선제적 확보" },
+            { year: "1953", title: "독도의용수비대", desc: "민간인들이 자발적으로 결성하여 독도를 수호했습니다.", era: "contemporary", cat: "활동", icon: "🛡️", meaning: "민간 주도의 실효적 수호" },
+            { year: "1954", title: "독도 등대 점등", desc: "상주 경비대 배치와 함께 등대를 설치하고 불을 밝혔습니다.", era: "contemporary", cat: "관리", icon: "💡", meaning: "국가적 관리 체계 완성" },
+            { year: "1982", title: "천연보호구역 지정", desc: "독도를 천연기념물로 지정하여 생태적 보호를 시작했습니다.", era: "contemporary", cat: "관리", icon: "🌿", meaning: "환경 보전을 통한 주권 강화" },
+            { year: "2005", title: "일반인 개방", desc: "전 국민의 자유로운 독도 방문이 시작되었습니다.", era: "contemporary", cat: "관리", icon: "🚶", meaning: "국민과 함께하는 영토화" }
+        ];
+
+        let currentEra = 'all';
+        let searchQuery = '';
+
+        function setEra(era, btn) {
+            currentEra = era;
+            // UI Update
+            document.querySelectorAll('.era-btn').forEach(b => {
+                b.classList.remove('active', 'bg-blue-600', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            btn.classList.add('active', 'bg-blue-600', 'text-white');
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            
+            document.getElementById('current-view-era').innerText = era.toUpperCase();
+            renderTimeline();
+        }
+
+        document.getElementById('masterSearch').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            renderTimeline();
+        });
+
+        function renderTimeline() {
+            const root = document.getElementById('timeline-render-root');
+            const empty = document.getElementById('empty-state');
+            root.innerHTML = '';
+
+            const filtered = dokdoEvents.filter(ev => {
+                const matchesEra = currentEra === 'all' || ev.era === currentEra;
+                const matchesSearch = ev.title.includes(searchQuery) || 
+                                     ev.year.includes(searchQuery) || 
+                                     ev.desc.includes(searchQuery);
+                return matchesEra && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            filtered.forEach((ev, i) => {
+                const isLeft = i % 2 === 0;
+                const card = `
+                    <div class="relative flex items-center justify-center md:justify-between w-full mb-12">
+                        <div class="hidden md:block w-5/12 ${isLeft ? 'order-1' : 'order-3'}"></div>
+                        <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full z-10 border-4 border-white shadow-sm"></div>
+                        <div class="w-[calc(100%-4rem)] md:w-5/12 ml-16 md:ml-0 ${isLeft ? 'order-3 md:text-left' : 'order-1 md:text-right'} era-card p-6 rounded-3xl shadow-sm border border-slate-100">
+                            <div class="flex items-center ${isLeft ? '' : 'md:flex-row-reverse'} gap-2 mb-2">
+                                <span class="text-xl">${ev.icon}</span>
+                                <span class="text-blue-600 font-black text-xl">${ev.year}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-2 myeongjo">${ev.title}</h3>
+                            <p class="text-slate-500 text-xs leading-relaxed mb-4">${ev.desc}</p>
+                            <div class="bg-blue-50 p-3 rounded-xl inline-block w-full text-left">
+                                <span class="text-[10px] text-blue-500 font-bold block mb-1">의미</span>
+                                <p class="text-[11px] text-blue-700 font-medium">${ev.meaning}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                root.insertAdjacentHTML('beforeend', card);
+            });
+        }
+
+        function initCharts() {
+            const ctx = document.getElementById('mainAnalysisChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['기록', '법적', '수호', '관리'],
+                    datasets: [{
+                        data: [5, 6, 4, 1],
+                        backgroundColor: ['#3b82f6', '#94a3b8', '#10b981', '#fbbf24'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutout: '80%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        // Initialize on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTimeline();
+            initCharts();
+        });
+    </script>
+</body>
+</html>
