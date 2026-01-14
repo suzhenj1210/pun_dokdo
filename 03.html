@@ -3,24 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>독도 역사 연표 - DOKDO PORTAL</title>
+    <title>독도 용어사전 - DOKDO PORTAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
         .myeongjo { font-family: 'Nanum Myeongjo', serif; }
-        .timeline-dot { position: relative; }
-        .timeline-dot::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background-color: #e2e8f0;
-            z-index: 0;
-        }
-        .timeline-item:last-child .timeline-dot::before { display: none; }
+        .tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 700; }
     </style>
 </head>
 <body class="pb-20">
@@ -29,153 +18,165 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="flex items-center space-x-2 text-blue-600 font-bold">
+                <!-- 한글 로고 및 링크 -->
+                <a href="index.html" class="flex items-center space-x-2 text-blue-600 font-bold hover:opacity-80 transition-opacity">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
-                    <span>DOKDO PORTAL</span>
+                    <span class="myeongjo text-lg">독도 포털</span>
                 </a>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <!-- 한글 홈 버튼 -->
+                <a href="index.html" class="flex items-center text-slate-700 hover:text-blue-600 font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    처음으로
+                </a>
                 <a href="01.html" class="hover:text-blue-600 transition">독도 정책</a>
-                <a href="02.html" class="text-blue-600 font-bold">역사 연표</a>
-                <a href="03.html" class="hover:text-blue-600 transition">용어사전</a>
+                <a href="02.html" class="hover:text-blue-600 transition">역사 연표</a>
+                <a href="03.html" class="text-blue-600 font-bold">용어사전</a>
                 <a href="04.html" class="hover:text-blue-600 transition">의견수렴</a>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <header class="bg-slate-900 text-white py-16 px-6">
+    <header class="bg-emerald-600 text-white py-16 px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-3xl md:text-5xl font-bold myeongjo mb-4">독도 역사 연표</h1>
-            <p class="text-slate-400">서기 512년부터 현재까지, 우리 땅 독도가 걸어온 기록입니다.</p>
+            <h1 class="text-3xl md:text-5xl font-bold myeongjo mb-4">독도 용어사전</h1>
+            <p class="text-emerald-50 text-lg opacity-90">독도를 이해하는 첫걸음, 정확한 용어와 명칭의 정의입니다.</p>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
-        <div class="space-y-0">
-            
-            <!-- Timeline Item: 512 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-sm shadow-lg">512</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">우산국, 신라에 복속</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        신라 지증왕 13년, 이사부 장군이 우산국을 정벌함으로써 울릉도와 독도가 한국 역사의 무대에 처음으로 등장했습니다. (삼국사기 기록)
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1454 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold text-sm">1454</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">세종실록지리지 편찬</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        강원도 울진현 소속으로 우산(독도)과 무릉(울릉) 두 섬을 명시하며, "두 섬이 서로 거리가 멀지 않아 날씨가 맑으면 바라볼 수 있다"고 기록했습니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1693 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold text-sm">1693</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">안용복 사건</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        안용복이 일본으로 건너가 울릉도와 독도가 조선의 영토임을 확약받았습니다. 이를 계기로 일본 막부는 '울릉도 도해 금지령'을 내리게 됩니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1877 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold text-sm">1877</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">태정관 지령</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        일본 최고 국가기관인 태정관이 지적 조사 과정에서 "죽도(울릉도) 외 일도(독도)는 일본과 관계가 없음을 명심할 것"을 내무성에 지시했습니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1900 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-sm shadow-lg">1900</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">대한제국 칙령 제41호 제정</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        고종 황제는 울릉도를 울도군으로 승격시키고, 관할 구역에 '석도(독도)'를 명시하여 독도가 대한제국의 영토임을 대내외적으로 공포했습니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1946 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold text-sm">1946</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">SCAPIN 제677호 발령</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        연합국최고사령부는 독도를 일본의 통치 범위에서 제외하여 한국에 반환할 영토로 명확히 규정했습니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: 1952 -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold text-sm shadow-lg">1952</div>
-                    <div class="flex-1 w-px bg-slate-200"></div>
-                </div>
-                <div class="pb-12 pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">인접 해양 주권에 관한 대통령 선언</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        일명 '평화선' 선언을 통해 독도를 포함한 인접 해양의 주권을 대외적으로 선포하고 실효적 지배를 공고히 했습니다.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline Item: Present -->
-            <div class="flex timeline-item">
-                <div class="flex flex-col items-center mr-6 md:mr-10 timeline-dot">
-                    <div class="z-10 flex items-center justify-center w-10 h-10 rounded-full bg-emerald-500 text-white font-bold text-sm shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="pt-1 flex-1">
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">현재의 독도</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        대한민국은 독도경비대를 상주시키고 등대 및 주민 거주 시설을 운영하며 확고한 실효적 지배를 유지하고 있습니다. 독도는 천연기념물 제336호로 지정되어 소중히 보호받고 있습니다.
-                    </p>
-                </div>
-            </div>
-
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Category Tabs -->
+        <div class="flex overflow-x-auto space-x-8 border-b border-slate-200 mb-10 pb-1">
+            <button class="tab-active px-4 py-2 text-sm whitespace-nowrap">전체</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">명칭 및 지명</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">지리 및 자연</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">문헌 및 사료</button>
+            <button class="px-4 py-2 text-sm text-slate-500 whitespace-nowrap hover:text-blue-600">인물 및 단체</button>
         </div>
 
-        <div class="mt-20 p-8 bg-blue-50 rounded-3xl border border-blue-100 text-center">
-            <h4 class="font-bold text-blue-900 mb-2 italic">우리가 지켜야 할 가치</h4>
-            <p class="text-sm text-blue-800 leading-relaxed">독도의 역사는 곧 대한민국 주권의 역사입니다.<br>올바른 기록을 기억하는 것이 수호의 시작입니다.</p>
-            <div class="mt-6">
-                <a href="index.html" class="inline-flex items-center text-blue-600 font-bold hover:underline">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7
+        <div class="grid grid-cols-1 gap-12">
+            
+            <!-- Category: 명칭 및 지명 -->
+            <section>
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full mr-3"></span>명칭 및 지명
+                </h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700 w-1/3">용어</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700">정의 및 설명</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">우산도 (于山島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">옛 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    독도의 가장 오래된 이름 중 하나로, 삼국시대 우산국에서 유래했습니다. 조선시대 『세종실록지리지』, 『신증동국여지승람』 등 수많은 관찬 문헌에 기록되어 있습니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">석도 (Stone Island, 石島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">대한제국 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    1900년 대한제국 칙령 제41호에 명시된 명칭입니다. 전라도 방언으로 '돌섬'을 뜻하는 '독섬'을 한자로 표기한 것으로 해석됩니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">삼봉도 (三峰島)</div>
+                                    <div class="text-xs text-slate-400 mt-1">조선 성종기 명칭</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    조선 성종 때 독도를 멀리서 보았을 때 세 개의 봉우리로 보인다는 점에서 유래한 명칭입니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Category: 문헌 및 사료 -->
+            <section>
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <span class="w-1.5 h-6 bg-blue-500 rounded-full mr-3"></span>역사적 문헌 및 사료
+                </h2>
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700 w-1/3">사료명</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-700">내용 및 가치</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">은주시청합기 (1667)</div>
+                                    <div class="text-xs text-slate-400 mt-1">일본 사료</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    일본의 고문헌으로, 일본의 서북쪽 경계를 '오키섬'으로 한정하여 울릉도와 독도가 조선 영토임을 방증하는 자료로 활용됩니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">칙령 제41호 (1900)</div>
+                                    <div class="text-xs text-slate-400 mt-1">대한제국 관보</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    고종 황제가 울릉도를 울군으로 승격시키고 독도(석도)를 관할 구역에 포함시킨 법령으로, 독도 영유권의 가장 강력한 국제법적 근거 중 하나입니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-5">
+                                    <div class="font-bold text-slate-900">태정관 지령 (1877)</div>
+                                    <div class="text-xs text-slate-400 mt-1">일본 공문서</div>
+                                </td>
+                                <td class="px-6 py-5 text-sm text-slate-600 leading-relaxed">
+                                    당시 일본 최고 권력기관인 태정관이 내무성에 "죽도(울릉도) 외 일도(독도)는 일본과 관계없음을 명심하라"고 내린 공식 지시입니다.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div class="mt-16 text-center">
+            <a href="index.html" class="inline-flex items-center px-8 py-3 rounded-full bg-slate-800 text-white font-bold hover:bg-slate-700 transition shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                메인 페이지로 돌아가기
+            </a>
+        </div>
+    </main>
+
+    <footer class="mt-24 py-12 text-center border-t border-slate-200 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-slate-800 font-bold myeongjo mb-4 text-lg">독도 포털</div>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-lg mx-auto">
+                본 서비스는 독도의 영토 주권 수호와 역사적 가치를 알리기 위해 제작되었습니다.<br>
+                독도의 명칭과 사료에 대한 정보는 국가기록원 및 외교부 독도 홈페이지를 참고하였습니다.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
